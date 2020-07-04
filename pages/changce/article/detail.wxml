@@ -1,0 +1,57 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<import src="/utils/wxParse/wxParse.wxml"></import>
+<block wx:if="{{show}}">
+    <view class="container">
+        <view class="detail">
+            <text class="title">{{article.article_title}}</text>
+            <view class="userinfo">
+                <view class="info1">
+                    <image src="{{article.resp_img}}"></image>
+                    <view class="v">v</view>
+                </view>
+                <navigator openType="switchTab" url="/pages/index/index">
+                    <view class="info2">
+                        <text class="name">{{article.article_mp&&article.article_mp!='null'?article.article_mp:''}} {{article.article_author}}</text>
+                        <text class="time">{{article.article_date}}</text>
+                    </view>
+                </navigator>
+            </view>
+            <view class="detailinfo">
+                <view class="wxParse">
+                    <template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"></template>
+                </view>
+            </view>
+            <view class="fui-article-subtitle">
+                <view class="nav">
+                    <i class="icox icox-huiyuan1"></i> 阅读 {{article.readnum}}</view>
+                <view bindtap="likeit" class="nav padding">
+                    <i class="icox icox-haoping2"></i> {{likenum}}
+				</view>
+            </view>
+        </view>
+        <block wx:if="{{list&&list.length>0}}">
+            <view class="news-title">
+                <i></i>热门推荐</view>
+            <view class="news-list">
+                <view class="news-item" wx:for="{{list}}">
+                    <navigator class="fui-list noclick" url="/pages/changce/article/detail?id={{item.id}}">
+                        <view class="news-item-con">
+                            <text>{{item.article_title}}</text>
+                            <view class="news-item-des">{{item.article_author||'平台'}}<i></i>{{item.article_date_v}}</view>
+                        </view>
+                        <view class="news-item-img" wx:if="{{item.resp_img}}">
+                            <image mode="widthFix" src="{{item.resp_img}}"></image>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </block>
+        <view class="envas"></view>
+    </view>
+    <view bindtap="phone" class="phone" data-phone="{{article.phone}}" style="{{article.phonecolor?'background-color:'+article.phonecolor:''}}" wx:if="{{article.phone}}">
+        <text class="icox icox-call"></text>
+    </view>
+    <view bindtap="tohome" class="homepage" style="{{article.phonecolor?'background-color:'+article.phonecolor:''}}">
+        <text class="icox icox-homepage" style="font-size:90rpx"></text>
+    </view>
+</block>

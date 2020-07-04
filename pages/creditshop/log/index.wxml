@@ -1,0 +1,255 @@
+<view class="fui-cell-group">
+    <view class="title">
+        <view class="fui-tab fui-tab-danger">
+            <view bindtap="tab" class="item {{status=='0'?'active':''}}" data-type="0">全部记录</view>
+            <view bindtap="tab" class="item {{status=='1'?'active':''}}" data-type="1">兑换记录</view>
+            <view bindtap="tab" class="item {{status=='2'?'active':''}}" data-type="2">中奖记录</view>
+        </view>
+    </view>
+</view>
+<view class="content">
+    <block wx:for="{{list}}">
+        <view class="fui-list-group noclick">
+            <navigator hoverClass="none" openType="navigate" url="/pages/creditshop/log/detail/index?id={{item.id}}">
+                <view class="fui-list-group-title" style="color:#666;font-size:13px">
+                    <view class="order-num">
+                        <text>订单号：{{item.logno}}</text>
+                    </view>
+                    <view style="float: right;color: #fea163">
+                        <block>
+                            <block wx:if="{{item.type==1}}">
+                                <view>
+                                    <block>
+                                        <block wx:if="{{item.status==1}}">
+                                            <text>未中奖</text>
+                                        </block>
+                                    </block>
+                                </view>
+                            </block>
+                        </block>
+                        <block>
+                            <block wx:if="{{item.goodstype==0}}">
+                                <view>
+                                    <block>
+                                        <block wx:if="{{item.isverify==1}}">
+                                            <block>
+                                                <block wx:if="{{item.status==2}}">待兑换</block>
+                                            </block>
+                                            <block>
+                                                <block wx:if="{{item.isreply==1}}">
+                                                    <block>
+                                                        <block wx:if="{{item.status==3&&item.iscomment==0}}">等待评价</block>
+                                                    </block>
+                                                    <block>
+                                                        <block wx:if="{{item.status==3&&item.iscomment==1}}">追加评价</block>
+                                                    </block>
+                                                    <block>
+                                                        <block wx:if="{{item.status==3&&item.iscomment==2}}">已完成</block>
+                                                    </block>
+                                                </block>
+                                                <block wx:else>
+                                                    <block>
+                                                        <block wx:if="{{item.status==3}}">已完成</block>
+                                                    </block>
+                                                </block>
+                                            </block>
+                                        </block>
+                                        <block wx:else>
+                                            <block>
+                                                <block wx:if="{{item.status==2&&item.addressid==0}}">
+                                                    <block>
+                                                        <block wx:if="{{item.type==0}}">已兑换</block>
+                                                        <block wx:else>已中奖</block>
+                                                    </block>
+                                                </block>
+                                            </block>
+                                            <block>
+                                                <block wx:if="{{item.status==2&&item.addressid>0&&item.time_send==0}}">待发货</block>
+                                            </block>
+                                            <block>
+                                                <block wx:if="{{item.status==3&&item.time_send>0&&item.time_finish==0}}">待收货</block>
+                                            </block>
+                                            <block>
+                                                <block wx:if="{{item.isreply==1}}">
+                                                    <block>
+                                                        <block wx:if="{{item.status==3&&item.time_finish>0&&item.iscomment==0}}">等待评价</block>
+                                                    </block>
+                                                    <block>
+                                                        <block wx:if="{{item.status==3&&item.time_finish>0&&item.iscomment==1}}">追加评价</block>
+                                                    </block>
+                                                    <block>
+                                                        <block wx:if="{{item.status==3&&item.time_finish>0&&item.iscomment==2}}">已完成</block>
+                                                    </block>
+                                                </block>
+                                                <block wx:else>
+                                                    <block>
+                                                        <block wx:if="{{item.status==3&&item.time_finish>0}}">已完成</block>
+                                                    </block>
+                                                </block>
+                                            </block>
+                                        </block>
+                                    </block>
+                                </view>
+                            </block>
+                            <block wx:else>
+                                <view>
+                                    <block>
+                                        <block wx:if="{{item.status==2&&item.goodstype==3}}">
+                                            <block>
+                                                <block wx:if="{{item.type==0}}">已兑换</block>
+                                                <block wx:else>已中奖</block>
+                                            </block>
+                                        </block>
+                                    </block>
+                                    <block>
+                                        <block wx:if="{{item.isreply==1}}">
+                                            <block>
+                                                <block wx:if="{{item.status==3&&item.iscomment==0}}">等待评价</block>
+                                            </block>
+                                            <block>
+                                                <block wx:if="{{item.status==3&&item.iscomment==1}}">追加评价</block>
+                                            </block>
+                                            <block>
+                                                <block wx:if="{{item.status==3&&item.iscomment==2}}">
+                                                    <block>
+                                                        <block wx:if="{{item.goodstype==1}}">优惠券</block>
+                                                    </block>
+                                                    <block>
+                                                        <block wx:if="{{item.goodstype==2}}">余额</block>
+                                                    </block>
+                                                    <block>
+                                                        <block wx:if="{{item.goodstype==3}}">红包</block>
+                                                    </block>已发放
+              </block>
+                                            </block>
+                                        </block>
+                                        <block wx:else>
+                                            <block>
+                                                <block wx:if="{{item.status==3}}">
+                                                    <block>
+                                                        <block wx:if="{{item.goodstype==1}}">优惠券</block>
+                                                    </block>
+                                                    <block>
+                                                        <block wx:if="{{item.goodstype==2}}">余额</block>
+                                                    </block>
+                                                    <block>
+                                                        <block wx:if="{{item.goodstype==3}}">红包</block>
+                                                    </block>已发放
+              </block>
+                                            </block>
+                                        </block>
+                                    </block>
+                                </view>
+                            </block>
+                        </block>
+                    </view>
+                </view>
+            </navigator>
+            <navigator hoverClass="none" openType="navigate" url="/pages/creditshop/log/detail/index?id={{item.id}}">
+                <view class="fui-list goods-info">
+                    <view class="fui-list-media">
+                        <image class="goods_img" src="{{item.thumb}}"></image>
+                    </view>
+                    <view class="fui-list-inner" style="height: 140rpx;">
+                        <view class="title">{{item.title}}</view>
+                        <block>
+                            <block wx:if="{{item.goodstype==0}}">
+                                <span class="title-tip">商品</span>
+                            </block>
+                        </block>
+                        <block>
+                            <block wx:if="{{item.goodstype==1}}">
+                                <span class="title-tip">优惠券</span>
+                            </block>
+                        </block>
+                        <block>
+                            <block wx:if="{{item.goodstype==2}}">
+                                <span class="title-tip">余额</span>
+                            </block>
+                        </block>
+                        <block>
+                            <block wx:if="{{item.goodstype==3}}">
+                                <span class="title-tip">红包</span>
+                            </block>
+                        </block>
+                        <view class="price">{{item.credit}}<span style="font-size: 22rpx;">积分</span>+￥{{item.money}}</view>
+                    </view>
+                </view>
+            </navigator>
+            <view class="fui-list list-padding" style="padding:0 24rpx">
+                <block>
+                    <block wx:if="{{item.goodstype==3}}">
+                        <view class="fui-list-inner text-right" style="padding: 10rpx 0;display:none;">
+                            <view class="btn btn-default btn-default-o">领取红包</view>
+                        </view>
+                    </block>
+                </block>
+                <block>
+                    <block wx:if="{{item.goodstype==0&&item.status==3&&item.time_send>0&&item.time_finish==0}}">
+                        <view class="fui-list-inner text-right" style="padding: 10rpx 0;">
+                            <view bindtap="finish" class="btn btn-default btn-default-o" data-logid="{{item.id}}">确认收货</view>
+                        </view>
+                    </block>
+                </block>
+                <block>
+                    <block wx:if="{{item.goodstype==0&&item.isverify==1&&item.status==2}}">
+                        <view class="fui-list-inner text-left" style="padding: 10rpx 0; color: #999;font-size: 26rpx;">
+          兑换码：123456789
+        </view>
+                    </block>
+                </block>
+                <block>
+                    <block wx:if="{{item.isreply==1&&item.time_finish>0}}">
+                        <view class="fui-list-inner text-right" style="padding: 10rpx 0;">
+                            <block>
+                                <block wx:if="{{item.goodstype==0||item.goodstype==1}}">
+                                    <block>
+                                        <block wx:if="{{item.status==3&&item.iscomment==1}}">
+                                            <navigator bindtap="replytap" class="btn btn-warning btn-default-o order-finish pull-right" hoverClass="none" openType="navigate" url="/pages/creditshop/comment/index?logid={{item.id}}&goodsid={{item.goodsid}}">追加评价</navigator>
+                                        </block>
+                                    </block>
+                                    <block>
+                                        <block wx:if="{{item.status==3&&item.iscomment==0}}">
+                                            <navigator bindtap="replytap" class="btn btn-warning btn-default-o order-finish pull-right" hoverClass="none" openType="navigate" url="/pages/creditshop/comment/index?logid={{item.id}}&goodsid={{item.goodsid}}">评价</navigator>
+                                        </block>
+                                    </block>
+                                </block>
+                            </block>
+                            <block>
+                                <block wx:if="{{item.goodstype==2||item.goodstype==3}}">
+                                    <block>
+                                        <block wx:if="{{item.status==3&&item.iscomment==1}}">
+                                            <navigator bindtap="replytap" class="btn btn-warning btn-default-o order-finish pull-right" hoverClass="none" openType="navigate" url="/pages/creditshop/comment/index?logid={{item.id}}&goodsid={{item.goodsid}}">追加评价</navigator>
+                                        </block>
+                                    </block>
+                                    <block>
+                                        <block wx:if="{{item.status==3&&item.iscomment==0}}">
+                                            <navigator bindtap="replytap" class="btn btn-warning btn-default-o order-finish pull-right" hoverClass="none" openType="navigate" url="/pages/creditshop/comment/index?logid={{item.id}}&goodsid={{item.goodsid}}">评价</navigator>
+                                        </block>
+                                    </block>
+                                </block>
+                            </block>
+                        </view>
+                    </block>
+                </block>
+                <block>
+                    <block wx:if="{{item.goodstype==0&&item.isverify==1&&item.status==2}}">
+                        <view class="fui-list-inner text-right" style="padding: 10rpx 0;">
+                            <navigator class="btn btn-default btn-default-o" hoverClass="none" openType="navigate" url="/pages/creditshop/verify/index?id={{item.id}}">兑换二维码</navigator>
+                        </view>
+                    </block>
+                </block>
+            </view>
+        </view>
+    </block>
+</view>
+<view class="fui-loading" hidden="{{load}}">
+    <view class="icon"></view>
+    <view class="text">正在加载</view>
+</view>
+<view class="fui-loading empty" hidden="{{more}}">
+    <view class="text">没有更多了</view>
+</view>
+<view class="fui-loading empty" hidden="{{notgoods}}">
+    <view class="text">暂时没有任何商品</view>
+</view>

@@ -1,0 +1,17 @@
+<block>
+    <block >
+        <block>
+            <block>
+                <view class="fui-copyright2-group" bindtap="phone2" >
+                    <block>
+                        <block wx:if="{{diyitem.params.showimg==1}}">
+                            <image src="{{diyitem.params.imgurl}}" style="width: 60rpx;height: 60rpx;"></image>
+                        </block>
+                    </block>
+                    <view class="copyright_cover" style="font-size: 20rpx;line-height: 60rpx;text-align: center;color:#ccc;">技术支持：山东微狐网络科技有限公司</view>
+                </view>
+            </block>
+        </block>
+    </block>
+    
+</block>

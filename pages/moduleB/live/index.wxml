@@ -1,0 +1,26 @@
+<view class="pb100">
+	<view class="list" wx:if="{{roomInfo.length}}">
+		<view class="item bg-f" wx:for="{{roomInfo}}" wx:key="roomid">
+			<image class="item__poster" mode="aspectFill" src="{{item.cover_img}}" bindtap="goLive" data-roomid="{{item.roomid}}"></image>
+			<view class="item__tag" wx:if="{{item.live_status==101}}">
+				<image mode="widthFix" src="../images/icon-video-started.gif"></image>
+				<view>直播中</view>
+			</view>
+			<view class="item__tag" wx:else>{{live_status_tip[item.live_status]}}</view>
+			<view class="item__content">
+				<view class="i-flex-item" bindtap="goLive" data-roomid="{{item.roomid}}">
+          <view class="fs-28 weight">{{item.name}}</view>
+          <view class="i-flex mt5">
+            <text class="iconfont icon-live red"></text>
+            <view class="item__title red">{{item.start_time}} 开播</view>
+          </view>
+        </view>
+				<!-- <view class="item__button red" wx:if="{{item.live_status==101}}" bindtap="goLive" data-roomid="{{item.roomid}}">进入直播</view> -->
+				<subscribe style="position: absolute;right: 4%;" room-id="{{item.roomid}}" />
+			</view>
+		</view>
+	</view>
+  <i-empty wx:if="{{noData}}">暂无直播~</i-empty>
+</view>
+
+<i-tabbar currentIdx='2' cartNum='{{cartNum}}' wx:if="{{showTabbar}}" class="tabbar {{isIpx?'pb20':''}}" />

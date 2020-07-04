@@ -1,0 +1,8 @@
+<view class="bg-f pb20">
+  <view class="list i-flex i-flex-wrap">
+    <navigator url="/lionfish_comshop/moduleB/writeoff/index" hover-class="none" class="item text-center">
+      <image class="icon" src="../images/writeoff.png"></image>
+      <view class="fsz-24 text-6">核销管理</view>
+    </navigator>
+  </view>
+</view>

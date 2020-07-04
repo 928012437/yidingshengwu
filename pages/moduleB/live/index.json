@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "直播",
+      "usingComponents": {
+        "i-load-more": "../../components/load-more/index",
+        "i-empty": "../../components/empty/index",
+        "i-tabbar": "../../components/tabbar/index",
+        "subscribe": "plugin-private://wx2b03c6e691cd7370/components/subscribe/subscribe"
+      }
+}
